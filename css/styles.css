@@ -530,7 +530,7 @@ p { font-size: 1rem; color: var(--text-body); }
 }
 .form-group label .required { color: var(--vivid-purple); margin-left: 2px; }
 
-.form-group input,
+.form-group input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
 .form-group select,
 .form-group textarea {
   width: 100%;
@@ -544,6 +544,25 @@ p { font-size: 1rem; color: var(--text-body); }
   transition: all 0.2s;
   outline: none;
   -webkit-appearance: none;
+}
+
+/* Checkboxes and radios — never get the full-width input treatment */
+.form-group input[type="checkbox"],
+.form-group input[type="radio"] {
+  width: auto;
+  padding: 0;
+  border: none;
+  background: none;
+  -webkit-appearance: auto;
+  appearance: auto;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--vivid-purple);
+  cursor: pointer;
+  position: static; /* prevent any accidental absolute positioning bleed */
+  z-index: auto;
 }
 .form-group input:focus,
 .form-group select:focus,
@@ -570,16 +589,35 @@ p { font-size: 1rem; color: var(--text-body); }
 .radio-item, .checkbox-item {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
   cursor: pointer;
   font-size: 0.9rem;
   color: var(--text-body);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s;
+  user-select: none;
+}
+.radio-item:hover, .checkbox-item:hover {
+  background: var(--lavender);
 }
 .radio-item input, .checkbox-item input {
-  width: auto;
-  margin-top: 3px;
+  /* reset any inherited input styles */
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  margin-top: 2px;
+  flex-shrink: 0;
   accent-color: var(--vivid-purple);
   cursor: pointer;
+  position: static !important;
+  -webkit-appearance: auto !important;
+  appearance: auto !important;
+  z-index: auto !important;
 }
 
 .file-upload {
@@ -590,6 +628,8 @@ p { font-size: 1rem; color: var(--text-body); }
   cursor: pointer;
   transition: all 0.2s;
   position: relative;
+  overflow: hidden; /* contain the absolute file input inside this box only */
+  z-index: 0;
 }
 .file-upload:hover, .file-upload.dragover {
   border-color: var(--vivid-purple);
