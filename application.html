@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply — Scholarship Foundation</title>
+  <meta name="description" content="Apply for a full-cover scholarship. Complete the online application form." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%236c3fc5'/><text y='24' x='5' font-size='22'>🎓</text></svg>" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="index.html" class="nav-logo" aria-label="Foundation Home">
+        <div class="nav-logo__icon">SF</div>
+        <div class="nav-logo__text">
+          Scholarship Foundation
+          <span>Investing in Future Leaders</span>
+        </div>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="scholarship.html">Scholarship</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="application.html" class="btn btn--primary active">Apply Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- APPLICATION LAYOUT -->
+  <!--
+    ===================================================================
+    HOW EMAIL NOTIFICATIONS WORK
+    ===================================================================
+    This form uses Formspree (https://formspree.io) — a free service
+    that sends submitted applications to your email address.
+
+    TO SET UP:
+    1. Go to https://formspree.io and create a free account
+    2. Create a new form and copy your unique endpoint URL
+       (looks like: https://formspree.io/f/xyzabcde)
+    3. Replace the action="#" below with your Formspree URL:
+       <form id="applicationForm" action="https://formspree.io/f/YOUR_ID" ...>
+    4. Formspree will email every submission to you automatically.
+
+    ALTERNATIVE: Use EmailJS (https://emailjs.com) for client-side
+    email sending — see js/main.js for where to add the integration.
+    ===================================================================
+  -->
+
+  <div class="container" style="padding-top: 0;">
+    <div class="application-layout">
+
+      <!-- ================== FORM ================== -->
+      <div>
+        <form
+          id="applicationForm"
+          action="#"
+          method="POST"
+          enctype="multipart/form-data"
+          novalidate
+        >
+          <!-- Hidden fields for Formspree email subject -->
+          <input type="hidden" name="_subject" value="New Scholarship Application Received" />
+          <input type="hidden" name="_template" value="table" />
+
+          <div id="formContent">
+
+            <!-- Progress indicator -->
+            <div class="form-progress" role="progressbar" aria-label="Application progress">
+              <div class="progress-step active">
+                <div class="progress-step__dot" title="Personal Info">1</div>
+                <div class="progress-step__line"></div>
+              </div>
+              <div class="progress-step">
+                <div class="progress-step__dot" title="Academic Info">2</div>
+                <div class="progress-step__line"></div>
+              </div>
+              <div class="progress-step">
+                <div class="progress-step__dot" title="Financial Info">3</div>
+                <div class="progress-step__line"></div>
+              </div>
+              <div class="progress-step">
+                <div class="progress-step__dot" title="Documents">4</div>
+                <div class="progress-step__line" style="display:none;"></div>
+              </div>
+            </div>
+
+            <div class="application-form-wrap">
+
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                <h2 class="form-title">Scholarship Application</h2>
+                <span id="stepIndicator" style="font-size:0.8rem;color:var(--text-muted);font-weight:500;">Step 1 of 4</span>
+              </div>
+              <p class="form-subtitle">All fields marked with <span style="color:var(--vivid-purple);">*</span> are required. Applications take approximately 30–45 minutes.</p>
+
+              <!-- ===== STEP 1: Personal Information ===== -->
+              <div class="form-step">
+                <div class="form-section">
+                  <div class="form-section__title">
+                    <span class="section-icon">👤</span>
+                    Personal Information
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="firstName">First Name <span class="required">*</span></label>
+                      <input type="text" id="firstName" name="First Name" required placeholder="Jane" />
+                      <div class="error-msg"></div>
+                    </div>
+                    <div class="form-group">
+                      <label for="lastName">Last Name <span class="required">*</span></label>
+                      <input type="text" id="lastName" name="Last Name" required placeholder="Smith" />
+                      <div class="error-msg"></div>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="email">Email Address <span class="required">*</span></label>
+                      <input type="email" id="email" name="Email" required placeholder="jane@example.com" />
+                      <div class="error-msg"></div>
+                    </div>
+                    <div class="form-group">
+                      <label for="phone">Phone Number <span class="required">*</span></label>
+                      <input type="tel" id="phone" name="Phone Number" required placeholder="+1 (555) 000-0000" />
+                      <div class="error-msg"></div>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="dob">Date of Birth <span class="required">*</span></label>
+                      <input type="date" id="dob" name="Date of Birth" required />
+                      <div class="error-msg"></div>
+                    </div>
+                    <div class="form-group">
+                      <label for="gender">Gender</label>
+                      <select id="gender" name="Gender">
+                        <option value="">Prefer not to say</option>
+                        <option>Female</option>
+                        <option>Male</option>
+                        <option>Non-binary</option>
+                        <option>Prefer to self-describe</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="address">Home Address <span class="required">*</span></label>
+                    <input type="text" id="address" name="Home Address" required placeholder="Street address" />
+                    <div class="error-msg"></div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="city">City <span class="required">*</span></label>
+                      <input type="text" id="city" name="City" required placeholder="City" />
+                      <div class="error-msg"></div>
+                    </div>
+                    <div class="form-group">
+                      <label for="country">Country <span class="required">*</span></label>
+                      <select id="country" name="Country" required>
+                        <option value="">Select country…</option>
+                        <option>United States</option>
+                        <option>United Kingdom</option>
+                        <option>Canada</option>
+                        <option>Australia</option>
+                        <option>Nigeria</option>
+                        <option>Ghana</option>
+                        <option>Kenya</option>
+                        <option>South Africa</option>
+                        <option>India</option>
+                        <option>Other</option>
+                      </select>
+                      <div class="error-msg"></div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- /STEP 1 -->
+
+
+              <!-- ===== STEP 2: Academic Information ===== -->
+              <div class="form-step" style="display:none;">
+                <div class="form-section">
+                  <div class="form-section__title">
+                    <span class="section-icon">🎓</span>
+                    Academic Information
+                  </div>
+
+                  <div class="form-group">
+                    <label for="university">University / College Name <span class="required">*</span></label>
+                    <input type="text" id="university" name="University" required placeholder="e.g. State University of Technology" />
+                    <div class="error-msg"></div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="fieldOfStudy">Field of Study <span class="required">*</span></label>
+                      <select id="fieldOfStudy" name="Field of Study" required>
+                        <option value="">Select a field…</option>
+                        <optgroup label="STEM">
+                          <option>Computer Science</option>
+                          <option>Software Engineering</option>
+                          <option>Electrical Engineering</option>
+                          <option>Mechanical Engineering</option>
+                          <option>Civil Engineering</option>
+                          <option>Chemical Engineering</option>
+                          <option>Mathematics</option>
+                          <option>Physics</option>
+                          <option>Biology</option>
+                          <option>Chemistry</option>
+                          <option>Data Science / Statistics</option>
+                          <option>Environmental Science</option>
+                          <option>Agricultural Science</option>
+                          <option>Medicine / Health Sciences</option>
+                          <option>Other STEM</option>
+                        </optgroup>
+                        <optgroup label="Other">
+                          <option>Other (Non-STEM)</option>
+                        </optgroup>
+                      </select>
+                      <div class="error-msg"></div>
+                    </div>
+                    <div class="form-group">
+                      <label for="yearOfStudy">Current Year of Study <span class="required">*</span></label>
+                      <select id="yearOfStudy" name="Year of Study" required>
+                        <option value="">Select…</option>
+                        <option>Incoming (admitted, not yet started)</option>
+                        <option>Year 1 / Freshman</option>
+                        <option>Year 2 / Sophomore</option>
+                      </select>
+                      <div class="error-msg"></div>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="gpa">Current GPA <span class="required">*</span></label>
+                      <input type="text" id="gpa" name="GPA" required placeholder="e.g. 3.7 / 4.0" />
+                      <div class="error-msg"></div>
+                      <div class="form-hint">Enter your GPA and the scale (e.g. 3.7 / 4.0 or 4.2 / 5.0). First-year students enter high school result.</div>
+                    </div>
+                    <div class="form-group">
+                      <label for="expectedGradYear">Expected Graduation Year <span class="required">*</span></label>
+                      <select id="expectedGradYear" name="Expected Graduation Year" required>
+                        <option value="">Select…</option>
+                        <option>2027</option>
+                        <option>2028</option>
+                        <option>2029</option>
+                        <option>2030</option>
+                        <option>2031</option>
+                      </select>
+                      <div class="error-msg"></div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="achievements">Academic Achievements &amp; Extracurriculars</label>
+                    <textarea id="achievements" name="Academic Achievements" placeholder="List any awards, honors, clubs, volunteer work, or leadership roles…"></textarea>
+                  </div>
+                </div>
+              </div><!-- /STEP 2 -->
+
+
+              <!-- ===== STEP 3: Financial Information ===== -->
+              <div class="form-step" style="display:none;">
+                <div class="form-section">
+                  <div class="form-section__title">
+                    <span class="section-icon">💸</span>
+                    Financial Circumstances
+                  </div>
+
+                  <div class="form-group">
+                    <label>Household Situation <span class="required">*</span></label>
+                    <div class="radio-group">
+                      <label class="radio-item">
+                        <input type="radio" name="Household Situation" value="Single-parent household" required />
+                        Single-parent household
+                      </label>
+                      <label class="radio-item">
+                        <input type="radio" name="Household Situation" value="Disability in household" />
+                        Disability (self or primary caregiver)
+                      </label>
+                      <label class="radio-item">
+                        <input type="radio" name="Household Situation" value="Unemployed caregiver" />
+                        Unemployed primary caregiver
+                      </label>
+                      <label class="radio-item">
+                        <input type="radio" name="Household Situation" value="Other financial hardship" />
+                        Other significant financial hardship
+                      </label>
+                    </div>
+                    <div class="error-msg" id="householdErr"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="annualIncome">Approximate Annual Household Income <span class="required">*</span></label>
+                    <select id="annualIncome" name="Annual Household Income" required>
+                      <option value="">Select a range…</option>
+                      <option>Under $10,000 / year</option>
+                      <option>$10,000 – $25,000 / year</option>
+                      <option>$25,000 – $40,000 / year</option>
+                      <option>$40,000 – $60,000 / year</option>
+                      <option>Above $60,000 / year</option>
+                    </select>
+                    <div class="error-msg"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="financialSituation">Describe Your Financial Situation <span class="required">*</span></label>
+                    <textarea id="financialSituation" name="Financial Situation Description" required
+                      placeholder="Please describe how your financial circumstances affect your ability to pay for university. Be as specific as possible."
+                      style="min-height:130px;"></textarea>
+                    <div class="error-msg"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="personalStatement">Personal Statement <span class="required">*</span></label>
+                    <textarea id="personalStatement" name="Personal Statement" required
+                      placeholder="Tell us about yourself, your goals, why you're applying, and how this scholarship will help you achieve your potential. (500–800 words)"
+                      style="min-height:180px;"></textarea>
+                    <div class="error-msg"></div>
+                    <div class="form-hint">500–800 words recommended</div>
+                  </div>
+                </div>
+              </div><!-- /STEP 3 -->
+
+
+              <!-- ===== STEP 4: Documents ===== -->
+              <div class="form-step" style="display:none;">
+                <div class="form-section">
+                  <div class="form-section__title">
+                    <span class="section-icon">📎</span>
+                    Supporting Documents
+                  </div>
+
+                  <p style="margin-bottom:28px;font-size:0.9rem;color:var(--text-muted);">
+                    Upload the following documents. Accepted formats: PDF, JPG, PNG. Max 10MB per file.
+                  </p>
+
+                  <div class="form-group">
+                    <label>Academic Transcript or Results <span class="required">*</span></label>
+                    <div class="file-upload">
+                      <input type="file" name="Academic Transcript" accept=".pdf,.jpg,.jpeg,.png" required />
+                      <div class="file-upload__icon">📋</div>
+                      <div class="file-upload__text"><strong>Click to upload</strong> or drag and drop</div>
+                      <div class="file-upload__hint">PDF, JPG, PNG — max 10MB</div>
+                    </div>
+                    <div class="file-name-display"></div>
+                    <div class="error-msg"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Proof of Enrollment or Admission Letter <span class="required">*</span></label>
+                    <div class="file-upload">
+                      <input type="file" name="Enrollment Proof" accept=".pdf,.jpg,.jpeg,.png" required />
+                      <div class="file-upload__icon">🏫</div>
+                      <div class="file-upload__text"><strong>Click to upload</strong> or drag and drop</div>
+                      <div class="file-upload__hint">PDF, JPG, PNG — max 10MB</div>
+                    </div>
+                    <div class="file-name-display"></div>
+                    <div class="error-msg"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Government-Issued ID <span class="required">*</span></label>
+                    <div class="file-upload">
+                      <input type="file" name="Government ID" accept=".pdf,.jpg,.jpeg,.png" required />
+                      <div class="file-upload__icon">🪪</div>
+                      <div class="file-upload__text"><strong>Click to upload</strong> or drag and drop</div>
+                      <div class="file-upload__hint">PDF, JPG, PNG — max 10MB</div>
+                    </div>
+                    <div class="file-name-display"></div>
+                    <div class="error-msg"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Proof of Financial Hardship <span class="required">*</span></label>
+                    <div class="file-upload">
+                      <input type="file" name="Financial Hardship Proof" accept=".pdf,.jpg,.jpeg,.png" required />
+                      <div class="file-upload__icon">💸</div>
+                      <div class="file-upload__text"><strong>Click to upload</strong> or drag and drop</div>
+                      <div class="file-upload__hint">Bank statements, benefit letters, or other supporting documents</div>
+                    </div>
+                    <div class="file-name-display"></div>
+                    <div class="error-msg"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Letter of Recommendation</label>
+                    <div class="file-upload">
+                      <input type="file" name="Letter of Recommendation" accept=".pdf,.jpg,.jpeg,.png" />
+                      <div class="file-upload__icon">✉️</div>
+                      <div class="file-upload__text"><strong>Click to upload</strong> or drag and drop</div>
+                      <div class="file-upload__hint">Optional but strongly recommended</div>
+                    </div>
+                    <div class="file-name-display"></div>
+                  </div>
+
+                  <!-- Consent -->
+                  <div class="form-group" style="margin-top:32px;">
+                    <div class="checkbox-group" data-required="true">
+                      <label class="checkbox-item">
+                        <input type="checkbox" name="Consent" value="yes" required />
+                        <span>I confirm that all information provided in this application is true and accurate. I understand that providing false information may result in disqualification. <span class="required">*</span></span>
+                      </label>
+                    </div>
+                    <div class="error-msg"></div>
+                  </div>
+
+                </div>
+              </div><!-- /STEP 4 -->
+
+              <!-- Navigation buttons -->
+              <div class="form-submit-area">
+                <button type="button" id="prevStep" class="btn btn--outline" style="display:none;">← Back</button>
+                <button type="button" id="nextStep" class="btn btn--primary">Continue →</button>
+                <button type="button" id="submitForm" class="btn btn--primary" style="display:none;">Submit Application ✓</button>
+              </div>
+
+            </div><!-- /application-form-wrap -->
+          </div><!-- /formContent -->
+
+          <!-- Success screen -->
+          <div id="successMessage" class="success-message">
+            <div class="success-message__icon">🎉</div>
+            <h2>Application Received!</h2>
+            <p>
+              Thank you for applying. We've received your application and our team will review it carefully.
+              Expect to hear from us within <strong>4–6 weeks</strong>.
+            </p>
+            <p style="font-size:0.85rem;color:var(--text-muted);margin-top:12px;margin-bottom:28px;">
+              A confirmation has been sent to your email address.
+            </p>
+            <a href="index.html" class="btn btn--outline">← Back to Home</a>
+          </div>
+
+        </form>
+      </div>
+
+
+      <!-- ================== SIDEBAR ================== -->
+      <aside class="application-sidebar">
+
+        <div class="sidebar-card sidebar-card--cta">
+          <div class="sidebar-card__title">🗓️ Application Deadline</div>
+          <div class="deadline-date">Dec 31, 2025</div>
+          <div class="deadline-label">Applications Close</div>
+          <p style="margin-top:16px;">Submit before the deadline. Late applications will not be reviewed.</p>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-card__title">✅ Before You Apply</div>
+          <div class="requirements-list">
+            <div class="req-item">
+              <span class="req-check">✓</span>
+              <span class="req-text">You are in a STEM field at an accredited university</span>
+            </div>
+            <div class="req-item">
+              <span class="req-check">✓</span>
+              <span class="req-text">GPA of 3.5+ (or a first-year student)</span>
+            </div>
+            <div class="req-item">
+              <span class="req-check">✓</span>
+              <span class="req-text">You are a 1st or 2nd year student</span>
+            </div>
+            <div class="req-item">
+              <span class="req-check">✓</span>
+              <span class="req-text">You face significant financial hardship</span>
+            </div>
+            <div class="req-item">
+              <span class="req-check">✓</span>
+              <span class="req-text">You have your documents ready to upload</span>
+            </div>
+          </div>
+          <a href="scholarship.html#requirements" style="display:inline-block;margin-top:16px;font-size:0.85rem;color:var(--vivid-purple);font-weight:600;">Full requirements →</a>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-card__title">❓ Need Help?</div>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:16px;">Have a question about the application or your eligibility? We're here to help.</p>
+          <a href="contact.html" class="btn btn--outline" style="width:100%;justify-content:center;display:flex;">Contact Us</a>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="footer" style="margin-top:80px;">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:12px;">
+            <div class="nav-logo__icon">SF</div>
+            <div class="nav-logo__text" style="color:white;">
+              Scholarship Foundation
+              <span style="color:rgba(255,255,255,0.4);">Investing in Future Leaders</span>
+            </div>
+          </div>
+          <p>We believe every exceptional student deserves the opportunity to reach their full potential, regardless of financial circumstance.</p>
+        </div>
+        <div>
+          <div class="footer-col__title">Navigate</div>
+          <ul class="footer-col__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="scholarship.html">Scholarship</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col__title">Programs</div>
+          <ul class="footer-col__links">
+            <li><a href="scholarship.html">STEM Scholarship</a></li>
+            <li><a href="scholarship.html#requirements">Requirements</a></li>
+            <li><a href="application.html">Apply Now</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col__title">Get Involved</div>
+          <ul class="footer-col__links">
+            <li><a href="contact.html">Volunteer as Mentor</a></li>
+            <li><a href="contact.html">Partner With Us</a></li>
+            <li><a href="contact.html">Sponsor a Student</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Scholarship Foundation. All rights reserved.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook">f</a>
+          <a href="#" class="social-link" aria-label="Instagram">in</a>
+          <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+          <a href="#" class="social-link" aria-label="LinkedIn">Li</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
