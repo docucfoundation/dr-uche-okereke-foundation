@@ -63,7 +63,6 @@
           id="applicationForm"
           action="https://formspree.io/f/xpqekywr"
           method="POST"
-          enctype="multipart/form-data"
           novalidate
         >
           <input type="hidden" name="_subject" value="New Scholarship Application — Dr. Uche Okereke Youth Educational Scholarship" />
@@ -93,11 +92,11 @@
 
             <div class="application-form-wrap">
 
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-                <h2 class="form-title">2026 Scholarship Application</h2>
-                <span id="stepIndicator" style="font-size:0.8rem;color:var(--text-muted);font-weight:500;">Step 1 of 4</span>
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:8px;">
+                <h2 class="form-title" style="font-size:clamp(1.4rem,3vw,2rem);min-width:0;">2026 Scholarship Application</h2>
+                <span id="stepIndicator" style="font-size:0.8rem;color:var(--text-muted);font-weight:500;white-space:nowrap;flex-shrink:0;margin-left:16px;">Step 1 of 4</span>
               </div>
-              <p class="form-subtitle">Fields marked <span style="color:var(--vivid-purple);">*</span> are required. Allow 30–45 minutes to complete.</p>
+              <p class="form-subtitle">Fields marked <span style="color:var(--vivid-purple);">*</span> are required.</p>
 
 
               <!-- STEP 1: Personal Information -->
@@ -141,10 +140,9 @@
                     <div class="form-group">
                       <label for="gender">Gender</label>
                       <select id="gender" name="Gender">
-                        <option value="">Prefer not to say</option>
+                        <option value="">Select…</option>
                         <option>Female</option>
                         <option>Male</option>
-                        <option>Prefer to self-describe</option>
                       </select>
                     </div>
                   </div>
@@ -339,58 +337,35 @@
                 <div class="form-section">
                   <div class="form-section__title"><span class="section-icon">📎</span> Supporting Documents</div>
 
-                  <p style="margin-bottom:28px;font-size:0.9rem;color:var(--text-muted);">
-                    Upload the documents listed below. Accepted formats: PDF, JPG, PNG — max 10MB per file.<br>
-                    <strong>If you are unable to upload a file</strong>, you may email it directly to us at
-                    <a href="mailto:scholarship@yourfoundation.org" style="color:var(--vivid-purple);">scholarship@yourfoundation.org</a>
-                    with your full name in the subject line.
-                  </p>
-
-                  <div class="form-group">
-                    <label>Admission Letter or Proof of First-Year Enrollment <span class="required">*</span></label>
-                    <div class="file-upload">
-                      <input type="file" name="Admission or Enrollment Proof" accept=".pdf,.jpg,.jpeg,.png" required />
-                      <div class="file-upload__icon">🏫</div>
-                      <div class="file-upload__text"><strong>Click to upload</strong> or drag and drop</div>
-                      <div class="file-upload__hint">Admission letter or academic result — PDF, JPG, PNG</div>
+                  <div style="background:var(--lavender);border:1.5px solid var(--soft-purple);border-radius:var(--radius-md);padding:28px 28px 24px;margin-bottom:32px;">
+                    <div style="font-size:1.5rem;margin-bottom:10px;">📧</div>
+                    <div style="font-weight:700;color:var(--deep-navy);margin-bottom:8px;font-size:0.95rem;">Email Your Documents After Submitting</div>
+                    <p style="font-size:0.88rem;color:var(--text-body);margin-bottom:16px;">
+                      After submitting this form, please email the following documents to:
+                    </p>
+                    <div style="background:white;border-radius:var(--radius-sm);padding:12px 16px;font-weight:700;color:var(--vivid-purple);font-size:0.95rem;margin-bottom:16px;word-break:break-all;">
+                      scholarship@yourfoundation.org
                     </div>
-                    <div class="file-name-display"></div>
-                    <div class="error-msg"></div>
+                    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0;">Use your <strong>full name</strong> as the email subject line. <strong>If these documents are not recieved, your application will be disqualified.</strong></p>
                   </div>
 
-                  <div class="form-group">
-                    <label>Academic Records (WAEC / O-Level Results) <span class="required">*</span></label>
-                    <div class="file-upload">
-                      <input type="file" name="Academic Records" accept=".pdf,.jpg,.jpeg,.png" required />
-                      <div class="file-upload__icon">📋</div>
-                      <div class="file-upload__text"><strong>Click to upload</strong> or drag and drop</div>
-                      <div class="file-upload__hint">WAEC result slip or certificate — PDF, JPG, PNG</div>
+                  <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
+                    <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 18px;background:var(--off-white);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:0.88rem;">
+                      <span style="color:var(--vivid-purple);font-size:1rem;flex-shrink:0;margin-top:1px;">✓</span>
+                      <span><strong>Admission letter or proof of first-year enrollment</strong> / academic result</span>
                     </div>
-                    <div class="file-name-display"></div>
-                    <div class="error-msg"></div>
-                  </div>
-
-                  <div class="form-group">
-                    <label>Proof of Financial Hardship <span class="required">*</span></label>
-                    <div class="file-upload">
-                      <input type="file" name="Proof of Hardship" accept=".pdf,.jpg,.jpeg,.png" required />
-                      <div class="file-upload__icon">💸</div>
-                      <div class="file-upload__text"><strong>Click to upload</strong> or drag and drop</div>
-                      <div class="file-upload__hint">e.g. Parent's death certificate, displacement record — PDF, JPG, PNG</div>
+                    <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 18px;background:var(--off-white);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:0.88rem;">
+                      <span style="color:var(--vivid-purple);font-size:1rem;flex-shrink:0;margin-top:1px;">✓</span>
+                      <span><strong>Academic records</strong> — WAEC result slip or certificate</span>
                     </div>
-                    <div class="file-name-display"></div>
-                    <div class="error-msg"></div>
-                  </div>
-
-                  <div class="form-group">
-                    <label>Valid ID (Optional but Recommended)</label>
-                    <div class="file-upload">
-                      <input type="file" name="Valid ID" accept=".pdf,.jpg,.jpeg,.png" />
-                      <div class="file-upload__icon">🪪</div>
-                      <div class="file-upload__text"><strong>Click to upload</strong> or drag and drop</div>
-                      <div class="file-upload__hint">National ID, birth certificate, or school ID — PDF, JPG, PNG</div>
+                    <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 18px;background:var(--off-white);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:0.88rem;">
+                      <span style="color:var(--vivid-purple);font-size:1rem;flex-shrink:0;margin-top:1px;">✓</span>
+                      <span><strong>Proof of financial hardship</strong> — e.g. parent's death certificate, displacement record</span>
                     </div>
-                    <div class="file-name-display"></div>
+                    <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 18px;background:var(--off-white);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:0.88rem;">
+                      <span style="color:var(--text-muted);font-size:1rem;flex-shrink:0;margin-top:1px;">○</span>
+                      <span><strong>Valid ID</strong> — National ID, birth certificate, or school ID <em>(optional but recommended)</em></span>
+                    </div>
                   </div>
 
                   <!-- Consent -->
@@ -489,11 +464,17 @@
         <div class="sidebar-card">
           <div class="sidebar-card__title">📄 What You'll Need</div>
           <div class="requirements-list">
-            <div class="req-item"><span class="req-check">📋</span><span class="req-text">Personal Statement (1,000–1,500 words)</span></div>
-            <div class="req-item"><span class="req-check">🏫</span><span class="req-text">Admission letter or enrollment proof</span></div>
-            <div class="req-item"><span class="req-check">📊</span><span class="req-text">WAEC / O-Level results</span></div>
-            <div class="req-item"><span class="req-check">💸</span><span class="req-text">Proof of hardship</span></div>
-            <div class="req-item"><span class="req-check">✉️</span><span class="req-text">Two reference contacts</span></div>
+            <div class="req-item"><span class="req-check">📋</span><span class="req-text">Personal Statement (1,000–1,500 words) — in the form</span></div>
+            <div class="req-item"><span class="req-check">✉️</span><span class="req-text">Two reference contacts — in the form</span></div>
+          </div>
+          <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
+            <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:10px;">Email after submitting</div>
+            <div class="requirements-list">
+              <div class="req-item"><span class="req-check">🏫</span><span class="req-text">Admission letter or enrollment proof</span></div>
+              <div class="req-item"><span class="req-check">📊</span><span class="req-text">WAEC / O-Level results</span></div>
+              <div class="req-item"><span class="req-check">💸</span><span class="req-text">Proof of hardship</span></div>
+              <div class="req-item"><span class="req-check">🪪</span><span class="req-text">Valid ID (recommended)</span></div>
+            </div>
           </div>
         </div>
 
