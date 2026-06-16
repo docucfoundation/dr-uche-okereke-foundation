@@ -12,7 +12,7 @@
 
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="container">
-      <a href="index.html" class="nav-logo">
+      <a href="/" class="nav-logo">
         <div class="nav-logo__icon">UO</div>
         <div class="nav-logo__text">
           Dr. Uche Okereke Scholarship
@@ -23,11 +23,11 @@
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks" role="list">
-        <li><a href="/" class="active">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/scholarship">Scholarship</a></li>
         <li><a href="/contact">Contact</a></li>
-        <li><a href="/application" class="btn btn--primary">Apply — Deadline Jul 31</a></li>
+        <li><a href="/application" class="btn btn--primary active">Apply — Deadline Jul 31</a></li>
       </ul>
     </div>
   </nav>
@@ -61,11 +61,10 @@
       <div>
         <form
           id="applicationForm"
-          action="https://api.web3forms.com/submit"
+          action="#"
           method="POST"
           novalidate
         >
-          <input type="hidden" name="access_key" value="af5b6ae0-8fb6-47f8-aa38-f5ac66b60512" />
           <input type="hidden" name="_subject" value="New Scholarship Application — Dr. Uche Okereke Youth Educational Scholarship" />
           <input type="hidden" name="_template" value="table" />
 
@@ -97,7 +96,7 @@
                 <h2 class="form-title" style="font-size:clamp(1.4rem,3vw,2rem);min-width:0;">2026 Scholarship Application</h2>
                 <span id="stepIndicator" style="font-size:0.8rem;color:var(--text-muted);font-weight:500;white-space:nowrap;flex-shrink:0;margin-left:16px;">Step 1 of 4</span>
               </div>
-              <p class="form-subtitle">Fields marked <span style="color:var(--vivid-purple);">*</span> are required.</p>
+              <p class="form-subtitle">Fields marked <span style="color:var(--vivid-purple);">*</span> are required. Allow 30–45 minutes to complete.</p>
 
 
               <!-- STEP 1: Personal Information -->
@@ -141,9 +140,10 @@
                     <div class="form-group">
                       <label for="gender">Gender</label>
                       <select id="gender" name="Gender">
-                        <option value="">Select…</option>
+                        <option value="">Prefer not to say</option>
                         <option>Female</option>
                         <option>Male</option>
+                        <option>Prefer to self-describe</option>
                       </select>
                     </div>
                   </div>
@@ -347,7 +347,7 @@
                     <div style="background:white;border-radius:var(--radius-sm);padding:12px 16px;font-weight:700;color:var(--vivid-purple);font-size:0.95rem;margin-bottom:16px;word-break:break-all;">
                       scholarship@yourfoundation.org
                     </div>
-                    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0;">Use your <strong>full name</strong> as the email subject line. <strong>If these documents are not recieved, your application will be disqualified.</strong></p>
+                    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0;">Use your <strong>full name</strong> as the email subject line.</p>
                   </div>
 
                   <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
@@ -418,7 +418,7 @@
               <a href="mailto:scholarship@yourfoundation.org" style="color:var(--vivid-purple);">scholarship@yourfoundation.org</a>
               with your full name in the subject line.
             </p>
-            <a href="index.html" class="btn btn--outline">← Back to Home</a>
+            <a href="/" class="btn btn--outline">← Back to Home</a>
           </div>
 
         </form>
@@ -459,7 +459,7 @@
               <span class="req-text">You have your documents ready (WAEC results, hardship proof, ID)</span>
             </div>
           </div>
-          <a href="scholarship.html#requirements" style="display:inline-block;margin-top:16px;font-size:0.85rem;color:var(--vivid-purple);font-weight:600;">Full requirements →</a>
+          <a href="/scholarship#requirements" style="display:inline-block;margin-top:16px;font-size:0.85rem;color:var(--vivid-purple);font-weight:600;">Full requirements →</a>
         </div>
 
         <div class="sidebar-card">
@@ -482,7 +482,7 @@
         <div class="sidebar-card">
           <div class="sidebar-card__title">❓ Need Help?</div>
           <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:16px;">Questions about your eligibility or the process? Reach out before the deadline.</p>
-          <a href="contact.html" class="btn btn--outline" style="width:100%;justify-content:center;display:flex;">Contact Us</a>
+          <a href="/contact" class="btn btn--outline" style="width:100%;justify-content:center;display:flex;">Contact Us</a>
         </div>
 
       </aside>
@@ -506,27 +506,27 @@
         <div>
           <div class="footer-col__title">Navigate</div>
           <ul class="footer-col__links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="scholarship.html">Scholarship</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/scholarship">Scholarship</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
         <div>
           <div class="footer-col__title">Scholarship</div>
           <ul class="footer-col__links">
-            <li><a href="scholarship.html">Award Details</a></li>
-            <li><a href="scholarship.html#requirements">Requirements</a></li>
-            <li><a href="scholarship.html#expectations">Awardee Expectations</a></li>
-            <li><a href="application.html">Apply Now</a></li>
+            <li><a href="/scholarship">Award Details</a></li>
+            <li><a href="/scholarship#requirements">Requirements</a></li>
+            <li><a href="/scholarship#expectations">Awardee Expectations</a></li>
+            <li><a href="/application">Apply Now</a></li>
           </ul>
         </div>
         <div>
           <div class="footer-col__title">Get Involved</div>
           <ul class="footer-col__links">
-            <li><a href="contact.html">Partner With Us</a></li>
-            <li><a href="contact.html">Make a Donation</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="/contact">Partner With Us</a></li>
+            <li><a href="/contact">Make a Donation</a></li>
+            <li><a href="/contact">Contact Us</a></li>
           </ul>
         </div>
       </div>
