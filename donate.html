@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate — Dr. Uche Okereke Youths Educational Scholarship</title>
+  <meta name="description" content="Support the Dr. Uche Okereke Youths Educational Scholarship. Every donation helps a young person from Ovim access higher education." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%236c3fc5'/><text y='24' x='5' font-size='22'>🎓</text></svg>" />
+</head>
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-logo">
+        <div class="nav-logo__icon">UO</div>
+        <div class="nav-logo__text">
+          Dr. Uche Okereke Scholarship
+          <span>Youths Educational Fund · Ovim</span>
+        </div>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/scholarship">Scholarship</a></li>
+        <li><a href="/donate" class="active">Donate</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/application" class="btn btn--primary">Apply — Deadline Jul 31</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <p class="eyebrow eyebrow--white">Make an Impact</p>
+      <h1>Support a Scholar</h1>
+      <p>Your donation directly funds tuition, fees, and book support for a young person from Ovim — and helps build the next generation of community leaders.</p>
+    </div>
+  </div>
+
+
+  <!-- WHY DONATE -->
+  <section class="section">
+    <div class="container">
+      <div style="text-align:center;max-width:640px;margin:0 auto 56px;" class="fade-up">
+        <p class="eyebrow">Why It Matters</p>
+        <h2>Every Naira and Dollar Counts</h2>
+        <p>This scholarship is currently funded by Dr. Uche Okereke as a personal commitment. Your donation helps us reach more students and sustain the program for years to come.</p>
+      </div>
+
+      <div class="award-cards fade-up-stagger">
+        <div class="award-card">
+          <div class="award-card__icon">🎓</div>
+          <div class="award-card__value">₦250,000</div>
+          <div class="award-card__label">Funds one scholar for one full year</div>
+        </div>
+        <div class="award-card">
+          <div class="award-card__icon">📚</div>
+          <div class="award-card__value">₦50,000</div>
+          <div class="award-card__label">Covers a scholar's books for a term</div>
+        </div>
+        <div class="award-card">
+          <div class="award-card__icon">🤝</div>
+          <div class="award-card__value">Any Amount</div>
+          <div class="award-card__label">Every contribution moves us closer to our goal</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- DONATION OPTIONS -->
+  <section class="section section--alt">
+    <div class="container">
+      <div style="text-align:center;max-width:600px;margin:0 auto 56px;" class="fade-up">
+        <p class="eyebrow">Choose Your Method</p>
+        <h2>Donate Securely</h2>
+        <p>Choose whichever payment method is most convenient for you. Both are secure and processed instantly.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:900px;margin:0 auto;" class="fade-up-stagger">
+
+        <!-- STRIPE CARD -->
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px 32px;text-align:center;box-shadow:var(--shadow);">
+          <div style="width:64px;height:64px;background:var(--lavender);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 20px;">💳</div>
+          <h3 style="margin-bottom:8px;">Donate with Card</h3>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:8px;">Powered by Stripe</p>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:28px;">
+            Accepts Visa, Mastercard, and international/dollar cards. Best for donors in the
+            US, UK, Europe, or anyone with an international card — including Nigerians with
+            a dollar card.
+          </p>
+          <!--
+            ============================================================
+            STRIPE SETUP
+            ============================================================
+            1. Go to https://stripe.com and create/verify your account
+            2. In your Stripe Dashboard, go to "Payment Links"
+            3. Create a new payment link (set it as a donation — customer
+               can choose amount, or set fixed tiers)
+            4. Copy the link (looks like https://buy.stripe.com/xxxxxxx)
+            5. Replace the href below with your real Stripe payment link
+            ============================================================
+          -->
+          <a href="https://buy.stripe.com/REPLACE_WITH_YOUR_LINK" target="_blank" rel="noopener" class="btn btn--primary" style="width:100%;justify-content:center;display:flex;">
+            Donate via Stripe →
+          </a>
+          <p style="font-size:0.75rem;color:var(--text-muted);margin-top:14px;">🔒 Secure checkout · SSL encrypted</p>
+        </div>
+
+        <!-- PAYSTACK CARD -->
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:40px 32px;text-align:center;box-shadow:var(--shadow);">
+          <div style="width:64px;height:64px;background:var(--lavender);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 20px;">🇳🇬</div>
+          <h3 style="margin-bottom:8px;">Donate via Nigeria</h3>
+          <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:8px;">Powered by Paystack</p>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:28px;">
+            Accepts Naira debit cards, bank transfer, and USSD. Best for donors in Nigeria
+            paying with a local bank account or card.
+          </p>
+          <!--
+            ============================================================
+            PAYSTACK SETUP
+            ============================================================
+            1. Go to https://paystack.com and create/verify your account
+            2. In your Paystack Dashboard, go to "Payment Pages"
+            3. Create a new payment page (set it as a donation page —
+               customer can choose amount, or set fixed tiers)
+            4. Copy the link (looks like https://paystack.com/pay/xxxxxxx)
+            5. Replace the href below with your real Paystack payment link
+            ============================================================
+          -->
+          <a href="https://paystack.com/pay/REPLACE_WITH_YOUR_LINK" target="_blank" rel="noopener" class="btn btn--primary" style="width:100%;justify-content:center;display:flex;">
+            Donate via Paystack →
+          </a>
+          <p style="font-size:0.75rem;color:var(--text-muted);margin-top:14px;">🔒 Secure checkout · SSL encrypted</p>
+        </div>
+
+      </div>
+
+      <!-- Bank transfer fallback -->
+      <div style="max-width:600px;margin:40px auto 0;text-align:center;" class="fade-up">
+        <p style="font-size:0.85rem;color:var(--text-muted);">
+          Prefer a direct bank transfer, or interested in a larger gift, grant, or corporate
+          partnership? <a href="/contact" style="color:var(--vivid-purple);font-weight:600;">Contact us</a> and we'll arrange it directly.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- IMPACT / TRUST -->
+  <section class="section">
+    <div class="container">
+      <div style="text-align:center;max-width:600px;margin:0 auto 56px;" class="fade-up">
+        <p class="eyebrow">Transparency</p>
+        <h2>Where Your Donation Goes</h2>
+      </div>
+
+      <div class="eligibility-grid fade-up-stagger">
+        <div class="eligibility-card">
+          <div class="eligibility-card__icon">🏫</div>
+          <h3>Tuition &amp; Fees</h3>
+          <p>The majority of every donation goes directly toward covering scholars' tuition and compulsory school fees.</p>
+        </div>
+        <div class="eligibility-card">
+          <div class="eligibility-card__icon">📚</div>
+          <h3>Books &amp; Materials</h3>
+          <p>Donations help fund textbooks and academic materials scholars need throughout their studies.</p>
+        </div>
+        <div class="eligibility-card">
+          <div class="eligibility-card__icon">🧭</div>
+          <h3>Mentorship Programs</h3>
+          <p>Your support helps fund mentorship sessions, leadership training, and community outreach events.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section class="section" style="background:linear-gradient(135deg,var(--royal-blue),var(--vivid-purple));text-align:center;padding:80px 0;">
+    <div class="container fade-up">
+      <h2 style="color:white;margin-bottom:16px;">Thank You for Considering a Gift</h2>
+      <p style="color:rgba(255,255,255,0.82);max-width:500px;margin:0 auto 36px;font-size:1.05rem;">
+        Every contribution — large or small — helps a young person in Ovim access the
+        education and opportunity they deserve.
+      </p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="#" onclick="document.querySelector('.section--alt').scrollIntoView({behavior:'smooth'}); return false;" class="btn btn--white">Donate Now ↑</a>
+        <a href="/contact" class="btn btn--outline-white">Ask About Partnerships</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:12px;">
+            <div class="nav-logo__icon">UO</div>
+            <div class="nav-logo__text" style="color:white;">
+              Dr. Uche Okereke Scholarship
+              <span style="color:rgba(255,255,255,0.4);">Youths Educational Fund · Ovim</span>
+            </div>
+          </div>
+          <p>A need-based scholarship initiative supporting Ovim youths from low-income backgrounds aimed at building future-ready, socially conscious leaders.</p>
+        </div>
+        <div>
+          <div class="footer-col__title">Navigate</div>
+          <ul class="footer-col__links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/scholarship">Scholarship</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col__title">Scholarship</div>
+          <ul class="footer-col__links">
+            <li><a href="/scholarship">Award Details</a></li>
+            <li><a href="/scholarship#requirements">Requirements</a></li>
+            <li><a href="/scholarship#expectations">Awardee Expectations</a></li>
+            <li><a href="/application">Apply Now</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col__title">Get Involved</div>
+          <ul class="footer-col__links">
+            <li><a href="/donate">Donate</a></li>
+            <li><a href="/contact">Partner With Us</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Dr. Uche Okereke Youths Educational Scholarship. All rights reserved.</p>
+        <!--<div class="social-links">
+          <a href="#" class="social-link" aria-label="Facebook">f</a>
+          <a href="#" class="social-link" aria-label="Instagram">in</a>
+          <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+        </div>-->
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

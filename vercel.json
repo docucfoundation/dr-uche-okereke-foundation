@@ -3,6 +3,7 @@
     { "source": "/about",        "destination": "/about.html" },
     { "source": "/scholarship",  "destination": "/scholarship.html" },
     { "source": "/application",  "destination": "/application.html" },
+    { "source": "/donate",       "destination": "/donate.html" },
     { "source": "/contact",      "destination": "/contact.html" }
   ]
 }
