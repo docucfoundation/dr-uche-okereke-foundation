@@ -132,8 +132,31 @@
 
                   <div class="form-row">
                     <div class="form-group">
-                      <label for="dob">Date of Birth <span class="required">*</span></label>
-                      <input type="date" id="dob" name="Date of Birth" required />
+                      <label for="dobDay">Date of Birth <span class="required">*</span></label>
+                      <div class="dob-row">
+                        <select id="dobDay" name="DOB Day" required aria-label="Day" data-dob-part="day">
+                          <option value="">Day</option>
+                        </select>
+                        <select id="dobMonth" name="DOB Month" required aria-label="Month" data-dob-part="month">
+                          <option value="">Month</option>
+                          <option value="01">January</option>
+                          <option value="02">February</option>
+                          <option value="03">March</option>
+                          <option value="04">April</option>
+                          <option value="05">May</option>
+                          <option value="06">June</option>
+                          <option value="07">July</option>
+                          <option value="08">August</option>
+                          <option value="09">September</option>
+                          <option value="10">October</option>
+                          <option value="11">November</option>
+                          <option value="12">December</option>
+                        </select>
+                        <select id="dobYear" name="DOB Year" required aria-label="Year" data-dob-part="year">
+                          <option value="">Year</option>
+                        </select>
+                      </div>
+                      <input type="hidden" id="dob" name="Date of Birth" />
                       <div class="error-msg"></div>
                       <div class="form-hint">You must be aged 17–25 at time of application</div>
                     </div>

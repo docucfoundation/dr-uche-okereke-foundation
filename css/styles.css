@@ -518,6 +518,7 @@ p { font-size: 1rem; color: var(--text-body); }
 .form-section__title .section-icon { font-size: 1.1rem; }
 
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.dob-row { display: grid; grid-template-columns: 0.8fr 1.3fr 0.9fr; gap: 8px; }
 .form-group { margin-bottom: 20px; }
 .form-group label {
   display: block;
@@ -925,6 +926,8 @@ p { font-size: 1rem; color: var(--text-body); }
   .hero__stats { gap: 28px; }
   .process-steps::before { display: none; }
   .form-row { grid-template-columns: 1fr; }
+  .dob-row { grid-template-columns: 0.75fr 1.3fr 0.95fr; gap: 6px; }
+  .dob-row select { padding-left: 10px; padding-right: 28px; background-position: right 8px center; font-size: 0.85rem; }
   .about__values { grid-template-columns: 1fr; }
   .application-form-wrap { padding: 28px 20px; }
   .footer-grid { grid-template-columns: 1fr; }

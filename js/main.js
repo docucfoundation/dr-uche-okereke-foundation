@@ -85,6 +85,45 @@ document.addEventListener('DOMContentLoaded', function () {
     const stepIndicator = document.getElementById('stepIndicator');
     let currentStep   = 0;
 
+    // --- Date of Birth dropdowns (Day / Month / Year) ---
+    const dobDay   = document.getElementById('dobDay');
+    const dobMonth = document.getElementById('dobMonth');
+    const dobYear  = document.getElementById('dobYear');
+    const dobHidden = document.getElementById('dob');
+
+    if (dobDay && dobMonth && dobYear && dobHidden) {
+      // Populate Day 1–31
+      for (let d = 1; d <= 31; d++) {
+        const opt = document.createElement('option');
+        opt.value = String(d).padStart(2, '0');
+        opt.textContent = d;
+        dobDay.appendChild(opt);
+      }
+
+      // Populate Year — full range, newest first, no artificial age limiting
+      const currentYear = new Date().getFullYear();
+      const earliestYear = currentYear - 100;
+      for (let y = currentYear; y >= earliestYear; y--) {
+        const opt = document.createElement('option');
+        opt.value = String(y);
+        opt.textContent = y;
+        dobYear.appendChild(opt);
+      }
+
+      // Keep hidden combined field (YYYY-MM-DD) in sync for validation/email export
+      function syncDobHidden() {
+        if (dobDay.value && dobMonth.value && dobYear.value) {
+          dobHidden.value = dobYear.value + '-' + dobMonth.value + '-' + dobDay.value;
+        } else {
+          dobHidden.value = '';
+        }
+      }
+      [dobDay, dobMonth, dobYear].forEach(function (el) {
+        el.addEventListener('change', syncDobHidden);
+      });
+    }
+
+
     // Show correct step
     function showStep(index) {
       steps.forEach(function (s, i) {
