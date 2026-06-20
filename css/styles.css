@@ -311,7 +311,7 @@ p { font-size: 1rem; color: var(--text-body); }
 /* ---------- Mission Strip ---------- */
 .mission-strip {
   background: linear-gradient(90deg, var(--royal-blue), var(--vivid-purple));
-  padding: 28px 0;
+  padding: 24px 0;
   overflow: hidden;
 }
 .mission-strip__inner {
