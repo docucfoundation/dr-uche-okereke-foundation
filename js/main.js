@@ -79,10 +79,10 @@ document.addEventListener('DOMContentLoaded', function () {
   if (applicationForm) {
 
     // ====================================================
-    // APPLICATION DEADLINE — edit this one line to change it
+    // APPLICATION DEADLINE
     // Format: 'YYYY-MM-DDTHH:MM:SS+01:00'  (+01:00 = WAT, Nigeria time)
     // ====================================================
-    const APPLICATION_DEADLINE = '2026-07-31T23:59:00+01:00';
+    const APPLICATION_DEADLINE = '2026-08-20T23:59:00+01:00';
 
     const deadlinePassed = new Date() > new Date(APPLICATION_DEADLINE);
 
