@@ -139,6 +139,15 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
 
+    // --- Mirror applicant email into _replyto so Gmail filter can auto-reply to them ---
+    var emailField   = document.getElementById('email');
+    var replyToField = document.getElementById('_replyto');
+    if (emailField && replyToField) {
+      emailField.addEventListener('input', function () {
+        replyToField.value = this.value;
+      });
+    }
+
 
     // Show correct step
     function showStep(index) {
