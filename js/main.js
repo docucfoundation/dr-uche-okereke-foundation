@@ -378,7 +378,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // copy your PUBLIC key (starts with "public_") from the
     // dashboard and paste it below. Never use a secret key here.
     // ====================================================
-    var BYTESCALE_API_KEY = 'public_REPLACE_WITH_YOUR_KEY';
+    var BYTESCALE_API_KEY = 'public_W23MTfh9p18Mkq1y233J1LxpidBg';
 
     // Map each upload button id → the hidden field that stores its file URL
     var bsWidgets = {
