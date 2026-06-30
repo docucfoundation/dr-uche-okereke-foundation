@@ -191,13 +191,13 @@ document.addEventListener('DOMContentLoaded', function () {
           showError(group, field, 'Please enter a valid phone number (digits only, 7–15 digits).');
           valid = false;
         } else if (field.id === 'personalStatement') {
-          // Word count: must be between 1,000 and 1,500 words
+          // Word count: must be between 600 and 800 words
           var wc = field.value.trim().split(/\s+/).filter(Boolean).length;
-          if (wc < 1000) {
-            showError(group, field, 'Your personal statement is too short (' + wc + ' words). Minimum is 1,000 words.');
+          if (wc < 600) {
+            showError(group, field, 'Your personal statement is too short (' + wc + ' words). Minimum is 600 words.');
             valid = false;
-          } else if (wc > 1500) {
-            showError(group, field, 'Your personal statement is too long (' + wc + ' words). Maximum is 1,500 words.');
+          } else if (wc > 800) {
+            showError(group, field, 'Your personal statement is too long (' + wc + ' words). Maximum is 800 words.');
             valid = false;
           }
         }
@@ -371,67 +371,108 @@ document.addEventListener('DOMContentLoaded', function () {
       launchConfetti();
     }
 
-    // --- Uploadcare widgets ---
-    // Map each widget input id → the hidden field that stores its CDN URL
-    var ucWidgets = {
-      'uc-admission': { hiddenId: 'ucAdmissionUrl', required: true,  groupId: 'grp-admission' },
-      'uc-academic':  { hiddenId: 'ucAcademicUrl',  required: true,  groupId: 'grp-academic'  },
-      'uc-hardship':  { hiddenId: 'ucHardshipUrl',  required: true,  groupId: 'grp-hardship'  },
-      'uc-id':        { hiddenId: 'ucIdUrl',         required: false, groupId: 'grp-id'        },
-      'uc-passport':  { hiddenId: 'ucPassportUrl',  required: true,  groupId: 'grp-passport'  },
+    // --- Bytescale upload buttons ---
+    // ====================================================
+    // BYTESCALE API KEY — REPLACE BEFORE GOING LIVE
+    // Sign up at https://www.bytescale.com/get-started, then
+    // copy your PUBLIC key (starts with "public_") from the
+    // dashboard and paste it below. Never use a secret key here.
+    // ====================================================
+    var BYTESCALE_API_KEY = 'public_REPLACE_WITH_YOUR_KEY';
+
+    // Map each upload button id → the hidden field that stores its file URL
+    var bsWidgets = {
+      'btn-admission': { hiddenId: 'ucAdmissionUrl', required: true,  groupId: 'grp-admission', statusId: 'status-admission' },
+      'btn-academic':  { hiddenId: 'ucAcademicUrl',  required: true,  groupId: 'grp-academic',  statusId: 'status-academic'  },
+      'btn-hardship':  { hiddenId: 'ucHardshipUrl',  required: true,  groupId: 'grp-hardship',  statusId: 'status-hardship'  },
+      'btn-id':        { hiddenId: 'ucIdUrl',        required: false, groupId: 'grp-id',        statusId: 'status-id'        },
+      'btn-passport':  { hiddenId: 'ucPassportUrl',  required: true,  groupId: 'grp-passport',  statusId: 'status-passport'  }
     };
 
-    if (typeof uploadcare !== 'undefined') {
-      Object.keys(ucWidgets).forEach(function (inputId) {
-        var cfg    = ucWidgets[inputId];
-        var widget = uploadcare.Widget('[id="' + inputId + '"]');
-        if (!widget) return;
+    var bytescaleAvailable = typeof Bytescale !== 'undefined' && Bytescale.UploadWidget;
 
-        widget.onChange(function (file) {
-          if (file) {
-            file.promise().then(function (info) {
+    if (bytescaleAvailable) {
+      Object.keys(bsWidgets).forEach(function (btnId) {
+        var cfg = bsWidgets[btnId];
+        var btn = document.getElementById(btnId);
+        if (!btn) return;
+
+        btn.addEventListener('click', function () {
+          var statusEl = document.getElementById(cfg.statusId);
+          var grp      = document.getElementById(cfg.groupId);
+          var isImageOnly = btn.getAttribute('data-images-only') === 'true';
+
+          var options = {
+            apiKey: BYTESCALE_API_KEY,
+            maxFileCount: 1,
+            maxFileSizeBytes: 10485760 // 10 MB, matches the stated limit on the page
+          };
+          if (isImageOnly) {
+            options.mimeTypes = ['image/jpeg', 'image/png', 'image/heic', 'image/webp'];
+          }
+
+          Bytescale.UploadWidget.open(options).then(
+            function (files) {
+              if (!files || files.length === 0) {
+                // User closed the modal without selecting a file — leave existing value as-is.
+                return;
+              }
               var hidden = document.getElementById(cfg.hiddenId);
-              if (hidden) hidden.value = info.cdnUrl;
-              // clear any error on the group
-              var grp = document.getElementById(cfg.groupId);
-              if (grp) { grp.classList.remove('has-error'); var e = grp.querySelector('.error-msg'); if (e) e.textContent = ''; }
-            }).catch(function () {
-              // Upload was cancelled or failed — clear the hidden field so validation
-              // correctly catches it and prompts the user to re-upload.
+              if (hidden) hidden.value = files[0].fileUrl;
+
+              if (statusEl) {
+                statusEl.textContent = '✓ ' + (files[0].originalFile && files[0].originalFile.originalFileName ? files[0].originalFile.originalFileName : 'File uploaded');
+                statusEl.classList.remove('failed');
+                statusEl.classList.add('uploaded');
+              }
+              btn.textContent = '📎 Replace File';
+
+              // Clear any error on the group
+              if (grp) {
+                grp.classList.remove('has-error');
+                var e = grp.querySelector('.error-msg');
+                if (e) e.textContent = '';
+              }
+            },
+            function () {
+              // Upload failed or was cancelled with an error — clear the hidden field so
+              // validation correctly catches it and prompts the user to re-upload.
               var hidden = document.getElementById(cfg.hiddenId);
               if (hidden) hidden.value = '';
-              // Show error on the group so the user knows immediately
-              var grp = document.getElementById(cfg.groupId);
+
+              if (statusEl) {
+                statusEl.textContent = 'Upload failed or was cancelled. Please try again.';
+                statusEl.classList.remove('uploaded');
+                statusEl.classList.add('failed');
+              }
+
               if (grp) {
                 grp.classList.add('has-error');
                 var errEl = grp.querySelector('.error-msg');
                 if (errEl) errEl.textContent = 'Upload failed or was cancelled. Please try again.';
               }
               showToast('A document upload failed. Please re-upload before submitting.', 'error');
-            });
-          } else {
-            var hidden = document.getElementById(cfg.hiddenId);
-            if (hidden) hidden.value = '';
-          }
+            }
+          );
         });
       });
     }
 
-    // Validate that required Uploadcare uploads are done (called inside validateStep for step 3 = index 3)
+    // Validate that required uploads are done (called inside submit handler)
     function validateUploads() {
-      // If the Uploadcare CDN failed to load (network issue, blocked script, etc.)
-      // we cannot show upload widgets at all. Rather than permanently blocking every
+      // If the Bytescale widget script failed to load (network issue, blocked script, etc.)
+      // we cannot show upload buttons at all. Rather than permanently blocking every
       // applicant, we skip upload validation and let them submit — the confirmation
       // email will instruct them to send documents separately (see contact page).
-      if (typeof uploadcare === 'undefined') {
+      if (!bytescaleAvailable) {
         showToast('Upload widgets could not load. Please email your documents to contact@docucfoundation.org', 'error');
         // Return true so the form is not hard-blocked — submission still goes through.
         return true;
       }
 
       var valid = true;
-      Object.keys(ucWidgets).forEach(function (inputId) {
-        var cfg = ucWidgets[inputId];
+      Object.keys(bsWidgets).forEach(function (btnId) {
+        var cfg = bsWidgets[btnId];
         if (!cfg.required) return;
         var hidden = document.getElementById(cfg.hiddenId);
         var grp    = document.getElementById(cfg.groupId);

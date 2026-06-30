@@ -8,15 +8,15 @@
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-  <!-- Uploadcare widget -->
-  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js" charset="utf-8"></script>
+  <!-- Bytescale Upload Widget -->
+  <script src="https://js.bytescale.com/upload-widget/v4"></script>
 </head>
 <body>
 
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="container">
       <a href="/" class="nav-logo">
-        <div class="nav-logo__icon">UO</div>
+        <div class="nav-logo__icon"><img src="/assets/favicon-32x32.png" alt="Dr. Uche Okereke Scholarship logo" width="40" height="40"></div>
         <div class="nav-logo__text">
           Dr. Uche Okereke Scholarship
           <span>Youth Educational Fund · Ovim</span>
@@ -371,7 +371,7 @@
                     <strong style="color:var(--deep-navy);">NOTE:</strong> Failure to submit all required documents will result in automatic disqualification.
                   </p>
 
-                  <!-- Hidden inputs — JS fills these with Uploadcare URLs before submit -->
+                  <!-- Hidden inputs — JS fills these with Bytescale URLs before submit -->
                   <input type="hidden" id="ucAdmissionUrl"  name="Document — Admission Letter URL" />
                   <input type="hidden" id="ucAcademicUrl"   name="Document — Academic Records URL" />
                   <input type="hidden" id="ucHardshipUrl"   name="Document — Hardship Proof URL" />
@@ -382,85 +382,55 @@
                   <div style="display:flex;flex-direction:column;gap:20px;margin-bottom:32px;">
 
                     <!-- Admission letter -->
-                    <div class="form-group uc-upload-group" id="grp-admission">
+                    <div class="form-group bs-upload-group" id="grp-admission">
                       <label>
                         Admission Letter / Proof of Enrollment
                         <span class="required">*</span>
                       </label>
                       <p style="font-size:0.82rem;color:var(--text-muted);margin:4px 0 10px;">Admission offer letter or proof of first-year enrollment</p>
-                      <input type="hidden"
-                        role="uploadcare-uploader"
-                        data-public-key="6ad14abfb13a0f1d4910"
-                        data-tabs="file camera"
-                        data-images-only="false"
-                        data-preview-step="true"
-                        id="uc-admission"
-                        name="uc-admission" />
+                      <button type="button" class="btn btn--outline bs-upload-btn" id="btn-admission" data-target="ucAdmissionUrl" data-group="grp-admission">📎 Choose File</button>
+                      <div class="bs-upload-status" id="status-admission"></div>
                       <div class="error-msg"></div>
                     </div>
 
                     <!-- Academic records -->
-                    <div class="form-group uc-upload-group" id="grp-academic">
+                    <div class="form-group bs-upload-group" id="grp-academic">
                       <label>
                         Academic Records
                         <span class="required">*</span>
                       </label>
                       <p style="font-size:0.82rem;color:var(--text-muted);margin:4px 0 10px;">WAEC / NECO result slip or certificate</p>
-                      <input type="hidden"
-                        role="uploadcare-uploader"
-                        data-public-key="6ad14abfb13a0f1d4910"
-                        data-tabs="file camera"
-                        data-images-only="false"
-                        data-preview-step="true"
-                        id="uc-academic"
-                        name="uc-academic" />
+                      <button type="button" class="btn btn--outline bs-upload-btn" id="btn-academic" data-target="ucAcademicUrl" data-group="grp-academic">📎 Choose File</button>
+                      <div class="bs-upload-status" id="status-academic"></div>
                       <div class="error-msg"></div>
                     </div>
 
                     <!-- Hardship proof -->
-                    <div class="form-group uc-upload-group" id="grp-hardship">
+                    <div class="form-group bs-upload-group" id="grp-hardship">
                       <label>
                         Proof of Financial Hardship
                         <span class="required">*</span>
                       </label>
                       <p style="font-size:0.82rem;color:var(--text-muted);margin:4px 0 10px;">e.g. parent's death certificate, hospital bill, displacement record</p>
-                      <input type="hidden"
-                        role="uploadcare-uploader"
-                        data-public-key="6ad14abfb13a0f1d4910"
-                        data-tabs="file camera"
-                        data-images-only="false"
-                        data-preview-step="true"
-                        id="uc-hardship"
-                        name="uc-hardship" />
+                      <button type="button" class="btn btn--outline bs-upload-btn" id="btn-hardship" data-target="ucHardshipUrl" data-group="grp-hardship">📎 Choose File</button>
+                      <div class="bs-upload-status" id="status-hardship"></div>
                       <div class="error-msg"></div>
                     </div>
 
                     <!-- Valid ID (optional) -->
-                    <div class="form-group uc-upload-group" id="grp-id">
+                    <div class="form-group bs-upload-group" id="grp-id">
                       <label>Valid ID <em style="font-weight:400;color:var(--text-muted);">(recommended)</em></label>
                       <p style="font-size:0.82rem;color:var(--text-muted);margin:4px 0 10px;">National ID, birth certificate, or school ID</p>
-                      <input type="hidden"
-                        role="uploadcare-uploader"
-                        data-public-key="6ad14abfb13a0f1d4910"
-                        data-tabs="file camera"
-                        data-images-only="false"
-                        data-preview-step="true"
-                        id="uc-id"
-                        name="uc-id" />
+                      <button type="button" class="btn btn--outline bs-upload-btn" id="btn-id" data-target="ucIdUrl" data-group="grp-id">📎 Choose File</button>
+                      <div class="bs-upload-status" id="status-id"></div>
                     </div>
 
                     <!-- Passport photo -->
-                    <div class="form-group uc-upload-group" id="grp-passport">
+                    <div class="form-group bs-upload-group" id="grp-passport">
                       <label>Decent Coloured Passport Photograph <span class="required">*</span></label>
                       <p style="font-size:0.82rem;color:var(--text-muted);margin:4px 0 10px;">A recent clear passport-sized photo with plain background</p>
-                      <input type="hidden"
-                        role="uploadcare-uploader"
-                        data-public-key="6ad14abfb13a0f1d4910"
-                        data-tabs="file camera"
-                        data-images-only="true"
-                        data-preview-step="true"
-                        id="uc-passport"
-                        name="uc-passport" />
+                      <button type="button" class="btn btn--outline bs-upload-btn" id="btn-passport" data-target="ucPassportUrl" data-group="grp-passport" data-images-only="true">📎 Choose File</button>
+                      <div class="bs-upload-status" id="status-passport"></div>
                       <div class="error-msg"></div>
                     </div>
 
@@ -598,7 +568,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="nav-logo" style="margin-bottom:12px;">
-            <div class="nav-logo__icon">UO</div>
+            <div class="nav-logo__icon"><img src="/assets/favicon-32x32.png" alt="Dr. Uche Okereke Scholarship logo" width="40" height="40"></div>
             <div class="nav-logo__text" style="color:white;">
               Dr. Uche Okereke Scholarship
               <span style="color:rgba(255,255,255,0.4);">Youth Educational Fund · Ovim</span>
